@@ -1,0 +1,56 @@
+create database EXERCICIO1P3;
+GO
+
+USE EXERCICIO1P3;
+
+CREATE TABLE Clinica(
+idClinica INT PRIMARY KEY IDENTITY,
+NomeEmpresa VARCHAR(200),
+Endereco VARCHAR(200)
+);
+GO
+
+CREATE TABLE Veterinario(
+idVeterinario INT PRIMARY KEY IDENTITY,
+idClinica INT FOREIGN KEY REFERENCES Clinica(idClinica),
+NomeVeterinario VARCHAR(200),
+Crm VARCHAR(200)
+);
+GO
+
+CREATE TABLE Dono(
+idDono INT PRIMARY KEY IDENTITY,
+NomeDono VARCHAR(200)
+);
+GO
+
+CREATE TABLE Animal(
+idAnimal INT PRIMARY KEY IDENTITY,
+NomeTipo VARCHAR(200)
+);
+GO
+
+
+CREATE TABLE Raca(
+idRaca INT PRIMARY KEY IDENTITY,
+idAnimal INT FOREIGN KEY REFERENCES Animal(idAnimal),
+NomeRaca VARCHAR(200),
+);
+GO
+
+CREATE TABLE Pet(
+idPet INT PRIMARY KEY IDENTITY,
+idDono INT FOREIGN KEY REFERENCES Dono(idDono),
+idRaca INT FOREIGN KEY REFERENCES Raca(idRaca),
+NomePet VARCHAR(200),
+DataNascimento Date
+);
+GO
+
+CREATE TABLE Consulta(
+idConsulta INT PRIMARY KEY IDENTITY,
+idVeterinario INT FOREIGN KEY REFERENCES Veterinario(idVeterinario),
+idPet INT FOREIGN KEY REFERENCES Pet(idPet),
+DataAtendimento Date
+);
+GO

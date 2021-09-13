@@ -1,0 +1,40 @@
+create database EXERCICIO1P2;
+GO
+
+USE EXERCICIO1P2;
+
+CREATE TABLE Empresa(
+idEmpresa INT PRIMARY KEY IDENTITY,
+NomeEmpresa VARCHAR(200)
+);
+GO
+
+CREATE TABLE Marca(
+idMarca INT PRIMARY KEY IDENTITY,
+nomeMarca VARCHAR(200)
+);
+GO
+
+CREATE TABLE Modelo(
+idModelo INT PRIMARY KEY IDENTITY,
+idMarca INT FOREIGN KEY REFERENCES Marca(idMarca),
+NomeModelo VARCHAR(200),
+AnoLançamento Date
+);
+GO
+
+
+CREATE TABLE Veiculo(
+idVeiculo INT PRIMARY KEY IDENTITY,
+idEmpresa INT FOREIGN KEY REFERENCES Empresa(idEmpresa),
+idModelo INT FOREIGN KEY REFERENCES Modelo(idModelo),
+CorVeiculo VARCHAR(200),
+);
+GO
+
+CREATE TABLE Cliente(
+idCliente INT PRIMARY KEY IDENTITY,
+nomeCliente VARCHAR(200),
+Cpf VARCHAR(200)
+);
+GO
